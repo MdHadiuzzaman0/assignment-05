@@ -5,11 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@5"
-      rel="stylesheet"
-      type="text/css"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css"/>
+
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,18 +17,15 @@
     />
 
     <link rel="stylesheet" href="./style.css" />
+    <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon">
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
   </head>
   <body class="bg-[#F8FAFC] h-screen">
     
     <section class="navbar bg-base-100 shadow-sm flex justify-between ">
+
       <div class="flex items-center">
         <img src="./assets/github-logo.png" alt="" class="h-[40px] ml-9"/>
         <a class="btn btn-ghost text-2xl font-bold p-1">GitHub Issues Tracker</a>
@@ -60,8 +54,6 @@
       </div>
     </section>
 
-
-
     <section id="btnSection" class="shadow-lg bg-white rounded-box h-20 w-10/12 mx-auto mt-15 p-5">
 
         <button onclick="allBtn(); showOnly('allBtn')" id="allBtn" class="btn text-black rounded-xl w-[120px]">All</button>
@@ -70,13 +62,12 @@
         
     </section>
 
-
     <section class="issueNum bg-white rounded-box h-20 w-10/12 mx-auto mt-5 p-5 flex justify-between">
 
         <div class="flex gap-2 items-center">
-            <img src="./assets/Aperture.png" alt="" class="border border-red-600 rounded-3xl" rounded-full">
+            <img src="./assets/Aperture.png" alt="" class="border-6 border-slate-500 rounded-3xl" rounded-full">
         <div>
-            <h3 id="totalIssue" class="font-bold text-[20px]">_ _ _ _ _ _ _ _ _ _ </h3>
+            <h3 id="totalIssue" class="font-bold text-[20px]">0 Issue</h3>
             <p class="text-[#64748B]">Track and manage your project issues</p>
         </div>
         </div>
@@ -97,44 +88,16 @@
             
         </div>
 
-        
         <div id="noIssueCard" class="text-center p-6 col-span-4 bg-white">
            <h1 class="text-2xl font-bold">No Issues Found!</h1>
            <p>Try searching for something else.</p>
         </div>
-        
 
         <div id="spinner" class="hidden flex items-center"><span class="loading loading-spinner loading-xl w-1/12 mx-auto"></span></div>
 
-        <!-- <div class="w-[290px] rounded-lg border p-5 space-y-6">
-            <div class="flex justify-between">
-                <img src="./assets/Open-Status.png" alt="" class="h-full">
-                <h3 class="py-1 px-6 bg-red-300 rounded-lg">HIGH</h3>
-            </div>
-
-            <div>
-                <h3 class="font-bold">Fix navigation menu on mobile devices</h3>
-                <p class="line-clamp-2 text-[#64748B] text-[14px]">The navigation menu doesn't collapse properly on mobile devices...</p>
-            </div>
-
-            <div class="flex gap-2">
-                <h3 class="bg-red-300 py-1 px-3 rounded-xl">BUG</h3>
-                <h3 class="bg-red-300 py-1 px-3 rounded-xl">HELP WANTED</h3>
-            </div>
-
-            <hr class="text-[#64748B]/40">
-
-            <div>
-                <h3 class="line-clamp-2 text-[#64748B] text-[14px]">#1 by john_doe</h3>
-                <h3 class="line-clamp-2 text-[#64748B] text-[14px]">1/15/2024</h3>
-            </div>
-        </div>  -->
-           
     </section>
 
-    <section>
-        <!-- Open the modal using ID.showModal() method -->
-       <!-- <button class="btn" onclick="my_modal_2.showModal()">open modal</button> -->
+    <section id="modal">
        <dialog id="issue_modal" class="modal ">
          <div class="modal-box max-w-[750px]">
             <div id="modalContainer"></div>
@@ -146,15 +109,8 @@
     </section>
 
    
-
 <script>
-let  allIssue=[];
-const cardContainer=document.getElementById('cardContainer')
-const cardContainerSection=document.getElementById('cardContainerSection')
-const totalIssue=document.getElementById('totalIssue')
-const modalContainer=document.getElementById('modalContainer')
-const spinner=document.getElementById('spinner')
-const noIssueCard=document.getElementById("noIssueCard")
+
 
 function showSpinner(){
 spinner.classList.remove('hidden');
@@ -179,19 +135,6 @@ function showOnly(id){
         selected.classList.add("bg-[#4A00FF]", "text-white")
     }
 }
-
-function loadCard(){
-    
-    fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues')
-   .then (response => response.json())
-   .then ( alldata => {
-    allIssue=alldata.data;
-    console.log(alldata);
-    console.log(allIssue);
-  
- })
-}
-loadCard()
 
 document.getElementById('searchBtn').addEventListener("click", function(){
     const input=document.getElementById('inputSearch');
@@ -220,7 +163,7 @@ document.getElementById('searchBtn').addEventListener("click", function(){
                 // Kichu na paile "No Issues Found" dekhano
                 cardContainer.innerHTML = `
                     `;
-                    alert('type something')
+                    alert('This word is not found')
                 totalIssue.innerText = `0 Issues`;
             }
 
@@ -231,106 +174,6 @@ document.getElementById('searchBtn').addEventListener("click", function(){
     
 })
 
-function allBtn(){
-    showSpinner()
-    showCard(allIssue);
-    hideSpinner(); 
-    
-}
-
-function openBtn(){
-    showSpinner() 
-    const openIssue=allIssue.filter(item => item.status === "open")
-    showCard(openIssue);
-    hideSpinner(); 
-}
-
-function closedBtn(){
-    showSpinner()
-    const closedIssue=allIssue.filter(item => item.status === "closed")
-    hideSpinner(); 
-    showCard(closedIssue);
-    
-
-}
-
-function showCard(cardData){
-    
-    console.log(cardData.length)
-    // totalIssue.innerHTML=`<h3 class="font-bold text-[20px]">${cardData.length} Issues</h3>`
-    totalIssue.innerText = `${cardData.length} Issues`;
-
-    if(cardContainer.children.length == cardData.length){
-        cardContainer.innerHTML = `<div class="text-center col-span-4 mt-8 bg-white">
-            <h1 class="text-2xl font-bold">No Issues Found!</h1>
-            <p>Try searching for something else.</p>
-            </div>`;
-        totalIssue.innerHTML = `<h3class="font-bold text-[20px]">_ _ _ _ _ _ _ _ _ _ </h3>`
-        return;
-    }
-    
-    cardContainer.innerHTML='';
-    noIssueCard.classList.remove("p-6")
-    cardData.forEach(element => {
-
-
-        
-
-        const createdAt= new Date(element.createdAt);
-        const date=createdAt.toLocaleDateString();
-        // console.log(date);
-        
-        function getLabels(array){
-            const labels=array.map(labels => `<h3 class="bg-red-300 py-1 px-3 rounded-xl">${labels}</h3>`)
-            const result= labels.join(" ");
-            return result;
-         }
-
-        cardContainerSection.classList.add("p-8", "bg-white");
-        const cardDiv=document.createElement('div');
-        cardDiv.className=`w-[290px] rounded-lg p-5 space-y-6 border border-black/20 border-t-8  shadow-lg ${element.status === 'open'? 'border-t-green-400 ' : 'border-t-[#A855F7]'}`
-        cardDiv.innerHTML=`
-        <div class="flex justify-between font-bold ">
-                ${element.status === 'open'? `<img src="./assets/Open-Status.png" alt="" class='h-full'>` : `<img src="./assets/Closed- Status .png" alt="" class='h-full'>`}
-
-               ${element.priority == 'high' ? `<h3 class="py-1 px-6 bg-[#FEECEC] text-red-400 rounded-lg">HIGH</h3>` : element.priority == 'medium' ? `<h3 class="py-1 px-6 bg-[#FFF6D1] text-amber-400 rounded-lg">MEDIUM</h3>` : `<h3 class="py-1 px-6 bg-[#EEEFF2] text-[#9CA3AF] rounded-lg">LOW</h3>`}
-            </div>
-
-            <div class="h-[76px] space-y-2 mb-13">
-                <h3 onclick="modalInfo('${element.id}')" class="font-bold cursor-pointer">${element.title}</h3>
-                <p  onclick="modalInfo('${element.id}')"  class="line-clamp-2 text-[#64748B] text-[14px] cursor-pointer">${element.description}</p>
-            </div>
-
-            <div class="flex flex-wrap gap-2">
-    ${element.labels.map(label => {
-        const val = label;
-        
-       
-        const colorClass = 
-            val === 'bug' ? 'bg-red-100 text-red-600 border-red-200' : 
-            val === 'enhancement' ? 'bg-blue-100 text-blue-600 border-blue-200' : 
-            val === 'help wanted' ? 'bg-green-100 text-green-600 border-green-200' : 
-            val === 'good first issue' ? 'bg-purple-100 text-purple-600 border-purple-200' : 
-            val === 'documentation' ? 'bg-slate-100 text-slate-600 border-slate-200' : 
-            'bg-gray-100 text-gray-500 border-gray-200';
-
-        return `<h3 class="py-1 px-3 border rounded-full text-[10px] font-bold uppercase ${colorClass}">${label}</h3>`;
-    }).join("")}
-</div>
-
-            <hr class="text-[#64748B]/40">
-
-            <div>
-                <h3 class="line-clamp-2 text-[#64748B] text-[14px]">#1 by ${element.author}</h3>
-                <h3 class="line-clamp-2 text-[#64748B] text-[14px]">${date}</h3>
-            </div>`
-
-            cardContainer.append(cardDiv)
-    });
-    
-}
-
-showCard()
 
 async function modalInfo(issueId){
     modalContainer.innerHTML="";
@@ -396,6 +239,6 @@ async function modalInfo(issueId){
 
 </script>
 
-<script src="./manpage.js"></script>
+<script src="./mainPage.js"></script>
   </body>
 </html>
