@@ -110,32 +110,6 @@
 
    
 <script>
-
-
-function showSpinner(){
-spinner.classList.remove('hidden');
-noIssueCard.innerHTML="";
-}
-
-function hideSpinner(){
-spinner.classList.add('hidden');
-
-}
-
-function showOnly(id){
-    const selected = document.getElementById(id);
-    const active=selected.classList.contains("bg-[#4A00FF]")
-    document.querySelectorAll("#btnSection .btn").forEach(allBtn => {
-        allBtn.classList.remove("bg-[#4A00FF]", "text-white")
-        // allBtn.classList.add("bg-gold-300", "text-black")
-    });
-
-    
-    if(!active){
-        selected.classList.add("bg-[#4A00FF]", "text-white")
-    }
-}
-
 document.getElementById('searchBtn').addEventListener("click", function(){
     const input=document.getElementById('inputSearch');
     const searchText=input.value;

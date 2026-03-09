@@ -6,6 +6,28 @@ const modalContainer=document.getElementById('modalContainer')
 const spinner=document.getElementById('spinner')
 const noIssueCard=document.getElementById("noIssueCard")
 
+function showSpinner(){
+spinner.classList.remove('hidden');
+}
+
+function hideSpinner(){
+spinner.classList.add('hidden');
+}
+
+function showOnly(id){
+    const selected = document.getElementById(id);
+    const active=selected.classList.contains("bg-[#4A00FF]")
+    document.querySelectorAll("#btnSection .btn").forEach(allBtn => {
+        allBtn.classList.remove("bg-[#4A00FF]", "text-white")
+        // allBtn.classList.add("bg-gold-300", "text-black")
+    });
+
+    
+    if(!active){
+        selected.classList.add("bg-[#4A00FF]", "text-white")
+    }
+}
+
 function loadCard(){
     fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues')
    .then (response => response.json())
@@ -58,6 +80,7 @@ function showCard(cardData){
     
     cardContainer.innerHTML='';
     noIssueCard.classList.remove("p-6")
+    noIssueCard.innerHTML=" ";
     cardContainerSection.classList.add("p-8", "bg-white");
 
     cardData.forEach(element => {
