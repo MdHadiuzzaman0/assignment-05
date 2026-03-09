@@ -1,121 +1,44 @@
 
 
 
-### **API Endpoints:**
-###  **All Issues:** 
-  - https://phi-lab-server.vercel.app/api/v1/lab/issues 
+
+1. 
+
+In case of var, it is a old technique. Nowadays it is not used so much. It can be hoisted but the result will be undefined. 
+In case of let, We can reassign the variable value of let, but can not call the variable outside the curly bracket {}, because of it maintain block-scoped.
+In case of let, We can change the variable value at any cost, also can not call the variable outside the curly bracket {}, because of it maintain block-scoped.
+
+2. 
+
+The spread operator (...) allows an array or object to be expanded into individual elements to create a new copy of an array without affecting the original, to pass array elements as separate arguments to a function (like Math.max).
+
+3. 
+
+map() is used for transforming an array into a new format. It returns New Array. The length of new array is the same length as the old one.
+filter() is used for selecting specific items based on a specific condition. It also returns a New Array. The length of new array can be shorter because many item can be rejected.
+foreach() can not returns any result. It just run the array and call the single component at a time.
+
+4.  
+
+An arrow function is a short way to write JavaScript functions using the => syntax introduced in ES6. It keep the code less messy. For one parameter, no () is needed. The function can be written in more than one line but return is used must in this case. Example:
+const add = (a, b) => a + b; 
+console.log(add(5, 10)); // Output: 15
 
 
-###  **Single Issue:**
-   - https://phi-lab-server.vercel.app/api/v1/lab/issue/{id}
+5.  
 
-   - Example: https://phi-lab-server.vercel.app/api/v1/lab/issue/33
+Template literals are a modern way to create strings by using backticks ( ` ` ) instead of single or double quotes. It is used for adding variable dirctly into a string using the ${variable} syntax or multiline html structure. example:
 
+const item = "Orange";
+const amount = 1;
+const price = 10;
 
-###  **Search Issue:** https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q={searchText}
+const output = `The price of ${amount} ${item} is ${price}.`; 
 
-   - Example:  https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=notifications
-
-
----
-
-## 📝 Main Requirements
-
-## 🎨 Design Part
-
-## Login Page
-- Create a login page containing a logo, title, and sub-title
-- Below that, there will be 2 inputs, a sign-in button, and a demo credential to sign in. Follow the Figma for this page 
-- Styled as per Figma
-
-## Main Page: 
-
-### Navbar: 
-
-- Navbar with website logo/name on the left
-- Search input and button on the right
-
-### Tab Section like Figma: 
-
-- 3 tab ( All, Open, Closed) at the top of this section.(**All**, **Open**, **Closed**)
-
-- Below the tab, there will be an icon, the issue count, some text on the left, and an open and closed marker on the right
-
-- Responsiveness: The website should be responsive for mobile devices. It is totally up to you. 
+console.log(output); 
+// Output: The price of 1 Orange is $10.
 
 
---- 
 
-
-## ⚙️ Functionalities
-- In login page, there will be default admin credentials (username, password). You need to sign in using these credentials.
-
-- Load all issues and display as per Figma
-
-- On clicking on an open or closed tab, it will load the issues data of the related tab and show it in a display-like card in a 4-column layout like Figma. By default, it will show all data 
-
-- Each card shows:
-  - Title
-  - Description
-  - Status
-  - Category
-  - Author
-  - Priority
-  - Label
-  - CreatedAt
-- Clicking on a tree name in a card will open a modal and show all the information about that Issue. 
-
-### 🚀 Challenges
-
-
-- Show the card Top border based on their category(open, closed), open card will have Green Boder, closed card will have a purple border on top. 
-
-- Loading spinner on data load
-
-- Show active button on changing category names
-
-- Implement Search Functionality and 8 meaningful github commit.  
-
-- Create a readme file and answer this question on your own. Don’t copy-paste from Google or any AI chatbot. 
-    - 1️⃣ What is the difference between var, let, and const?
-    - 2️⃣ What is the spread operator (...)?
-    - 3️⃣ What is the difference between map(), filter(), and forEach()?
-    - 4️⃣ What is an arrow function?
-    - 5️⃣ What are template literals?
-
-
----
-
-## 🛠️ Technology Stack
-
-- **HTML**
-- **CSS** (Vanilla/Tailwind/DaisyUI)
-- **JavaScript** (Vanilla)
-
----
-
-## 🔑 Demo Credentials
-
-```text
-Username: admin
-Password: admin123
-```
-
-
----
-
-### Optional: 
- - No need to show status: Open, Closed styles On modals. 
- - No Need to show icon on labels 
- - No need to apply styles on Priority 
---- 
-
-
-## 📤 What to submit
-
-- **GitHub Repository Link:**
-- **Live Site Link:**
-
----
 
 
