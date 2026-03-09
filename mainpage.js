@@ -41,21 +41,21 @@ function loadCard(){
 }
 loadCard()
 
-function allBtn(){
+function allbtn(){
     showSpinner()
     showCard(allIssue);
     hideSpinner(); 
     
 }
 
-function openBtn(){
+function openbtn(){
     showSpinner() 
     const openIssue=allIssue.filter(item => item.status === "open")
     showCard(openIssue);
     hideSpinner(); 
 }
 
-function closedBtn(){
+function closedbtn(){
     showSpinner()
     const closedIssue=allIssue.filter(item => item.status === "closed")
     hideSpinner(); 
