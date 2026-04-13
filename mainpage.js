@@ -43,28 +43,51 @@ function loadCard(){
 }
 loadCard()
 
-function allbtn(){
-    showSpinner()
-    showCard(allIssue);
-    hideSpinner(); 
+// function allbtn(){
+//     showSpinner()
+//     showCard(allIssue);
+//     hideSpinner(); 
     
-}
+// }
 
-function openbtn(){
-    showSpinner() 
-    const openIssue=allIssue.filter(item => item.status === "open")
+// function openbtn(){
+//     showSpinner() 
+//     const openIssue=allIssue.filter(item => item.status === "open")
+//     showCard(openIssue);
+//     hideSpinner(); 
+// }
+
+// function closedbtn(){
+//     showSpinner()
+//     const closedIssue=allIssue.filter(item => item.status === "closed")
+//     hideSpinner(); 
+//     showCard(closedIssue);
+    
+
+// }
+
+document.getElementById('allBtn').addEventListener('click', function() {
+    showOnly('allBtn'); // বাটন স্টাইল পরিবর্তন
+    showSpinner();
+    showCard(allIssue); // সব ইস্যু দেখানো
+    hideSpinner();
+});
+
+document.getElementById('openBtn').addEventListener('click', function() {
+    showOnly('openBtn');
+    showSpinner();
+    const openIssue = allIssue.filter(item => item.status === "open");
     showCard(openIssue);
-    hideSpinner(); 
-}
+    hideSpinner();
+});
 
-function closedbtn(){
-    showSpinner()
-    const closedIssue=allIssue.filter(item => item.status === "closed")
-    hideSpinner(); 
+document.getElementById('closedBtn').addEventListener('click', function() {
+    showOnly('closedBtn');
+    showSpinner();
+    const closedIssue = allIssue.filter(item => item.status === "closed");
     showCard(closedIssue);
-    
-
-}
+    hideSpinner();
+});
 
 function showCard(cardData){
     
